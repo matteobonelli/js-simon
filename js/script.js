@@ -14,7 +14,6 @@ function simonSays(){
     let randomNumbers;
     let userNumbers;
     let rigthNumbers;
-    let wrongNumbers;
    
     memoTimer();
 
@@ -53,21 +52,24 @@ function simonSays(){
         let message;
         let messageWrongNumbers;
         if (randomNumbers.length === 0){
-            messageWrongNumbers = `Non hai sbagliato nessun numero!`
+            messageWrongNumbers = `<span class='text-success'>Non hai sbagliato nessun numero!</span>`
+        }else if(randomNumbers.length === 1){
+            messageWrongNumbers = `Il numero che non hai trovato è: 
+            <span class='text-danger'>${randomNumbers}</span>`
         } else{
             messageWrongNumbers = `I numeri che non hai trovato sono: 
-            ${randomNumbers}`
+            <span class='text-danger'>${randomNumbers}</span>`
         }
         if(rigthNumbers.length === 0){
-            message = `Non hai indovinato nessun numero! </br> </br>
+            message = `<span class='text-danger'>Non hai indovinato nessun numero!</span> </br> 
             ${messageWrongNumbers}`
         } else if(rigthNumbers.length === 1){
             message = `Hai indovinato ${rigthNumbers.length} numero! 
-            ovvero: ${rigthNumbers} </br> </br>
+            ovvero: <span class='text-success'>${rigthNumbers}</span> </br>
             ${messageWrongNumbers}`;
         } else{
             message = `Hai indovinato ${rigthNumbers.length} numeri! 
-            ovvero: ${rigthNumbers} </br> </br>
+            ovvero: <span class='text-success'>${rigthNumbers}</span> </br>
             ${messageWrongNumbers}`;
         }
         resultScreen.innerHTML = message
