@@ -40,8 +40,17 @@ function simonSays(){
             }
         }
         console.log(rigthNumbers);
-        resultScreen.innerHTML = `<div class='text-center'>Hai indovinato ${rigthNumbers.length} numeri! 
-        ovvero: ${rigthNumbers}</div>`;
+        let message;
+        if(rigthNumbers.length === 0){
+            message = 'Non hai indovinato nessun numero!'
+        } else if(rigthNumbers.length === 1){
+            message = `Hai indovinato ${rigthNumbers.length} numero! 
+            ovvero: ${rigthNumbers}`;
+        } else{
+            message = `Hai indovinato ${rigthNumbers.length} numeri! 
+            ovvero: ${rigthNumbers}`;
+        }
+        resultScreen.innerHTML = message
         resultScreen.classList.remove('d-none')
         btnContainer.classList.add('d-none');
         playAgainContainer.classList.remove('d-none');
@@ -66,10 +75,10 @@ function simonSays(){
             const numberBox = document.createElement('div');
             randomNumbers = generateNumbers();
             numberBox.innerText = randomNumbers[i];
-            numberBox.className = 'text-light display-2 number-width mb-3'
+            numberBox.className = 'text-light display-2 fw-bold number-width mb-3'
             memoNumbersBox.append(numberBox);
         }
-            setTimeout(showInput, 30000)
+            setTimeout(showInput, 3000)
     
             function showInput(){
                 for(let i = 0; i < 5; i++){
