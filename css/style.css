@@ -1,3 +1,7 @@
 input{
     width: 60px !important;
 }
+
+.container-height{
+    height: 600px;
+}
