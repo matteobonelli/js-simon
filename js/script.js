@@ -69,7 +69,7 @@ function simonSays(){
             numberBox.className = 'text-light display-2 number-width mb-3'
             memoNumbersBox.append(numberBox);
         }
-            setTimeout(showInput, 3000)
+            setTimeout(showInput, 30000)
     
             function showInput(){
                 for(let i = 0; i < 5; i++){
