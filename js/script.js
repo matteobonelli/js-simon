@@ -5,6 +5,7 @@ function simonSays(){
     const inputDisplay = document.getElementById('inputDisplay');
     const btnContainer = document.getElementById('buttonContainer');
     const superContainer = document.getElementById('superContainer');
+    const resultScreen = document.getElementById('results');
     const btn = document.querySelector('.btn');
     let randomNumbers = [];
     let userNumbers = [];
@@ -27,14 +28,19 @@ function simonSays(){
                 }
             }
         }
+        superContainer.classList.add('d-none');
         console.log(userNumbers)
         for (let c = 0; c < userNumbers.length; c++){
             if(randomNumbers.includes(userNumbers[c])){
                 rigthNumbers.push(userNumbers[c])
-                console.log('ehi');
+                //console.log('ehi');
             }
         }
         console.log(rigthNumbers);
+        resultScreen.innerHTML = `<div class='text-center'>Hai indovinato ${rigthNumbers.length} numeri! 
+        ovvero: ${rigthNumbers}</div>`;
+        resultScreen.classList.remove('d-none')
+        btnContainer.classList.add('d-none');
             
     }
 
