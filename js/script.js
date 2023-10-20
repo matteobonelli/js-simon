@@ -4,16 +4,19 @@ function simonSays(){
     const memoNumbersBox = document.getElementById('memoNumbers');
     const inputDisplay = document.getElementById('inputDisplay');
     const btnContainer = document.getElementById('buttonContainer');
+    const playAgainContainer = document.getElementById('playAgain');
     const superContainer = document.getElementById('superContainer');
     const resultScreen = document.getElementById('results');
-    const btn = document.querySelector('.btn');
-    let randomNumbers = [];
-    let userNumbers = [];
-    let rigthNumbers = [];
-    
+    const btn = document.querySelector('#buttonContainer .btn');
+    const playAgainButton = document.querySelector('#playAgain .btn')
+    let randomNumbers;
+    let userNumbers;
+    let rigthNumbers;
+   
     memoTimer();
 
     btn.addEventListener('click', checkUserNumbers);
+    playAgainButton.addEventListener('click', memoTimer)
 
     function checkUserNumbers(){
         const userInput = document.getElementsByClassName('input-width');
@@ -41,10 +44,24 @@ function simonSays(){
         ovvero: ${rigthNumbers}</div>`;
         resultScreen.classList.remove('d-none')
         btnContainer.classList.add('d-none');
+        playAgainContainer.classList.remove('d-none');
             
     }
 
     function memoTimer(){
+        userNumbers = [];
+        rigthNumbers = [];
+        resultScreen.innerHTML = '';
+        resultScreen.classList.add('d-none');
+        superContainer.classList.remove('d-none');
+        superContainer.classList.add('container-height');
+        superContainer.classList.remove('container-input-dimension');
+        memoNumbersBox.classList.remove('d-none');
+        inputDisplay.classList.add('d-none');
+        playAgainContainer.classList.add('d-none');
+        randomNumbers = [];
+        inputDisplay.innerHTML = '';
+        memoNumbersBox.innerHTML = '';
         for(let i = 0; i < 5; i++){
             const numberBox = document.createElement('div');
             randomNumbers = generateNumbers();
@@ -52,7 +69,7 @@ function simonSays(){
             numberBox.className = 'text-light display-2 number-width mb-3'
             memoNumbersBox.append(numberBox);
         }
-            setTimeout(showInput, 30000)
+            setTimeout(showInput, 3000)
     
             function showInput(){
                 for(let i = 0; i < 5; i++){
@@ -67,7 +84,6 @@ function simonSays(){
                 superContainer.classList.add('container-input-dimension')
                 memoNumbersBox.classList.add('d-none');
                 inputDisplay.classList.remove('d-none');
-                btnContainer.className = 'd-flex justify-content-center align-items-center';
                 btnContainer.classList.remove('d-none');
                 console.log(randomNumbers)
             }
