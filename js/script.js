@@ -1,5 +1,7 @@
 "use strict";
+
 simonSays();
+
 function simonSays(){
     const memoNumbersBox = document.getElementById('memoNumbers');
     const inputDisplay = document.getElementById('inputDisplay');
@@ -12,10 +14,12 @@ function simonSays(){
     let randomNumbers;
     let userNumbers;
     let rigthNumbers;
+    let wrongNumbers;
    
     memoTimer();
 
     btn.addEventListener('click', checkUserNumbers);
+
     playAgainButton.addEventListener('click', memoTimer)
 
     function checkUserNumbers(){
@@ -23,7 +27,7 @@ function simonSays(){
         for(let i = 0; i < userInput.length; i++){
             let numInput = parseInt(userInput[i].value);
             if(isNaN(numInput)){
-                console.log('ciaone');
+                //console.log('ciaone');
                 return
             } else{
                 if(!userNumbers.includes(numInput)){
@@ -37,18 +41,34 @@ function simonSays(){
             if(randomNumbers.includes(userNumbers[c])){
                 rigthNumbers.push(userNumbers[c])
                 //console.log('ehi');
+                for(let s = 0; s < randomNumbers.length; s++){
+                    if(userNumbers[c] === randomNumbers[s]){
+                        randomNumbers.splice(s, 1)
+                    }
+                }
             }
         }
+        console.log(randomNumbers);
         console.log(rigthNumbers);
         let message;
+        let messageWrongNumbers;
+        if (randomNumbers.length === 0){
+            messageWrongNumbers = `Non hai sbagliato nessun numero!`
+        } else{
+            messageWrongNumbers = `I numeri che non hai trovato sono: 
+            ${randomNumbers}`
+        }
         if(rigthNumbers.length === 0){
-            message = 'Non hai indovinato nessun numero!'
+            message = `Non hai indovinato nessun numero! </br> </br>
+            ${messageWrongNumbers}`
         } else if(rigthNumbers.length === 1){
             message = `Hai indovinato ${rigthNumbers.length} numero! 
-            ovvero: ${rigthNumbers}`;
+            ovvero: ${rigthNumbers} </br> </br>
+            ${messageWrongNumbers}`;
         } else{
             message = `Hai indovinato ${rigthNumbers.length} numeri! 
-            ovvero: ${rigthNumbers}`;
+            ovvero: ${rigthNumbers} </br> </br>
+            ${messageWrongNumbers}`;
         }
         resultScreen.innerHTML = message
         resultScreen.classList.remove('d-none')
